@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', fn()=> view('login'))->name('login');
+Route::get('/register', fn()=> view('regis'))->name('register');
 Route::get('/field', fn()=> view('user.field'))->name('field');
 Route::get('/booking', fn()=> view('user.booking'))->name('booking');
 Route::get('/profile', fn()=> view('user.profile'))->name('profile');

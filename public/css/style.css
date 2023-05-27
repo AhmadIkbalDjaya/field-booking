@@ -1,3 +1,30 @@
-body {
-  background: pink;
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=PT+Serif&display=swap');
+/* .navbar{
+  background: transparent !important;
+  backdrop-filter: blur(10px) !important;
+} */
+
+
+/* === Font === */
+a {
+    text-decoration: none;
+}
+h1{
+  font-family: 'PT Serif', serif;
+  font-weight: bold;
+  /* font-size: 60px; */
+}
+p{
+  font-family: 'Comfortaa', cursive;
+}
+
+/* === Logout === */
+.icn-akun {
+    width: 35px;
+    height: 35px;
+}
+
+/* === Spasi === */
+#spasi{
+  margin-bottom: 80px;
 }
