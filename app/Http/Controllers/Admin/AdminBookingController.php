@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminBookingController extends Controller
 {
@@ -16,7 +17,7 @@ class AdminBookingController extends Controller
         ]);
     }
 
-    public function updateStatus(Request $request, Booking $booking)
+    public function update(Request $request, Booking $booking)
     {
         $validated = $request->validate([
             "status" => "required|in:Pending,Waiting For Payment,Confirmed,Cancelled",
