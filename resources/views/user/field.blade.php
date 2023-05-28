@@ -30,7 +30,8 @@
           <a href="{{ route('booking') }}">
             <div class="card">
               <div class="px-2 pt-2">
-                <img src="{{ asset('/images/lapangan1.jpg') }}" class="card-img-top rounded-3" alt="img" height="170px" />
+                <img src="{{ asset('/images/lapangan1.jpg') }}" class="card-img-top rounded-3" alt="img"
+                  height="170px" />
               </div>
               <div class="card-body">
                 <h5 class="card-title text-center">Lapangan A</h5>
@@ -43,7 +44,8 @@
           <a href="{{ route('booking') }}">
             <div class="card">
               <div class="px-2 pt-2">
-                <img src="{{ asset('/images/lapangan2.jpg') }}" class="card-img-top rounded-3" alt="img" height="170px" />
+                <img src="{{ asset('/images/lapangan2.jpg') }}" class="card-img-top rounded-3" alt="img"
+                  height="170px" />
               </div>
               <div class="card-body">
                 <h5 class="card-title text-center">Lapangan B</h5>
@@ -56,7 +58,8 @@
           <a href="{{ route('booking') }}">
             <div class="card">
               <div class="px-2 pt-2">
-                <img src="{{ asset('/images/lapangan3.jpg') }}" class="card-img-top rounded-3" alt="img" height="170px" />
+                <img src="{{ asset('/images/lapangan3.jpg') }}" class="card-img-top rounded-3" alt="img"
+                  height="170px" />
               </div>
               <div class="card-body">
                 <h5 class="card-title text-center">Lapangan A</h5>
@@ -69,7 +72,8 @@
           <a href="{{ route('booking') }}">
             <div class="card">
               <div class="px-2 pt-2">
-                <img src="{{ asset('/images/lapangan4.jpg') }}" class="card-img-top rounded-3" alt="img" height="170px" />
+                <img src="{{ asset('/images/lapangan4.jpg') }}" class="card-img-top rounded-3" alt="img"
+                  height="170px" />
               </div>
               <div class="card-body">
                 <h5 class="card-title text-center">Lapangan A</h5>
@@ -81,5 +85,4 @@
       </div>
     </div>
   </section>
-  
 @endsection

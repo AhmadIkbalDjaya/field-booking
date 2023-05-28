@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=PT+Serif&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=PT+Serif&display=swap");
 /* .navbar{
   background: transparent !important;
   backdrop-filter: blur(10px) !important;
 } */
 
-
 /* === Font === */
 a {
     text-decoration: none;
 }
-h1{
-  font-family: 'PT Serif', serif;
-  font-weight: bold;
-  /* font-size: 60px; */
+h1 {
+    font-family: "PT Serif", serif;
+    font-weight: bold;
+    /* font-size: 60px; */
 }
-p{
-  font-family: 'Comfortaa', cursive;
+p {
+    font-family: "Comfortaa", cursive;
 }
 
 /* === Logout === */
@@ -25,6 +25,6 @@ p{
 }
 
 /* === Spasi === */
-#spasi{
-  margin-bottom: 80px;
+#spasi {
+    margin-bottom: 80px;
 }
