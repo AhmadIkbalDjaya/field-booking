@@ -9,4 +9,14 @@ class Field extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function category()
+    {
+        return $this->hasOne(Category::class);
+    }
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }
