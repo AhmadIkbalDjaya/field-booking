@@ -5,6 +5,7 @@
 @endpush
 
 @section('body')
+  @include('components.nav_responsive')
   @include('components.navbar')
 
   {{-- Spasi --}}

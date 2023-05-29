@@ -28,3 +28,79 @@ p {
 #spasi {
     margin-bottom: 80px;
 }
+
+/* Table Menyamping */
+.table th:nth-child(1) {
+    white-space: nowrap;
+}
+.table th:nth-child(2) {
+    white-space: nowrap;
+}
+.table th:nth-child(3) {
+    white-space: nowrap;
+}
+.table td:nth-child(4) {
+    white-space: nowrap;
+}
+.table td:nth-child(1) {
+    white-space: nowrap;
+}
+.table td:nth-child(2) {
+    white-space: nowrap;
+}
+.table td:nth-child(3) {
+    white-space: nowrap;
+}
+
+/* === Media Query === */
+@media (max-width: 768px) {
+    #navbar .iconic {
+        display: none;
+    }
+    #navbar .layout_fitur {
+        justify-content: center !important;
+        background-color: aqua !important;
+    }
+}
+
+/* === Navbar === */
+
+.navbar {
+    background-color: #f3f3f3;
+}
+
+#navbar2 {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #navbar1 {
+        display: none;
+    }
+    #navbar2 {
+        display: contents;
+    }
+    #home {
+        height: 100vh;
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+}
+
+/* Lebar Navbar*/
+@media (max-width: 768px) {
+    #offcanvasNavbar {
+        width: 75%;
+    }
+}
+
+/* === Menghilangkan tampilan lingkaran radio === */
+.form-check-input[type="radio"] {
+    display: none;
+}
+
+/* === Mengubah tampilan tombol saat terpilih === */
+.form-check-input[type="radio"]:checked + label .btn {
+    background-color: #3e82ca; /* warna latar belakang saat terpilih */
+    color: #fff; /* warna teks saat terpilih */
+}

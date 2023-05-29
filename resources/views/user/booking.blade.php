@@ -5,6 +5,7 @@
 @endpush
 
 @section('body')
+  @include('components.nav_responsive')
   @include('components.navbar')
 
   {{-- Spasi --}}
@@ -33,96 +34,161 @@
                   <thead>
                     <tr>
                       <th scope="col">
-                        <button type="button" class="btn btn-info" style="width: 100%">
-                          <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                          <p>17 Mei</p>
-                        </button>
+                        <div class="from-check">
+                          <input class="form-check-input" type="radio" name="hari" id="senin1" />
+                          <label class="form-check-label w-100" for="senin1">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                              onclick="selectButton('senin1')">
+                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
+                              <p>17 Mei</p>
+                            </button>
+                          </label>
+                        </div>
                       </th>
                       <th scope="col">
-                        <button type="button" class="btn btn-info" style="width: 100%">
-                          <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                          <p>18 Mei</p>
-                        </button>
+                        <div class="from-check">
+                          <input class="form-check-input" type="radio" name="hari" id="senin2" />
+                          <label class="form-check-label w-100" for="senin2">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                              onclick="selectButton('senin2')">
+                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
+                              <p>17 Mei</p>
+                            </button>
+                          </label>
+                        </div>
                       </th>
                       <th scope="col">
-                        <button type="button" class="btn btn-info" style="width: 100%">
-                          <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                          <p>19 Mei</p>
-                        </button>
+                        <div class="from-check">
+                          <input class="form-check-input" type="radio" name="hari" id="senin3" />
+                          <label class="form-check-label w-100" for="senin3">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                              onclick="selectButton('senin3')">
+                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
+                              <p>17 Mei</p>
+                            </button>
+                          </label>
+                        </div>
                       </th>
                       <th scope="col">
-                        <button type="button" class="btn btn-info" style="width: 100%">
-                          <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                          <p>20 Mei</p>
-                        </button>
+                        <div class="from-check">
+                          <input class="form-check-input" type="radio" name="hari" id="senin4" />
+                          <label class="form-check-label w-100" for="senin4">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                              onclick="selectButton('senin4')">
+                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
+                              <p>17 Mei</p>
+                            </button>
+                          </label>
+                        </div>
                       </th>
                       <th scope="col">
-                        <button type="button" class="btn btn-info" style="width: 100%">
-                          <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                          <p>21 Mei</p>
-                        </button>
+                        <div class="from-check">
+                          <input class="form-check-input" type="radio" name="hari" id="senin5" />
+                          <label class="form-check-label w-100" for="senin5">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                              onclick="selectButton('senin5')">
+                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
+                              <p>17 Mei</p>
+                            </button>
+                          </label>
+                        </div>
                       </th>
                       <th scope="col">
-                        <button type="button" class="btn btn-info" style="width: 100%">
-                          <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                          <p>22 Mei</p>
-                        </button>
+                        <div class="from-check">
+                          <input class="form-check-input" type="radio" name="hari" id="senin6" />
+                          <label class="form-check-label w-100" for="senin6">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                              onclick="selectButton('senin6')">
+                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
+                              <p>17 Mei</p>
+                            </button>
+                          </label>
+                        </div>
                       </th>
                       <th scope="col">
-                        <button type="button" class="btn btn-info" style="width: 100%">
-                          <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                          <p>23 Mei</p>
-                        </button>
+                        <div class="from-check">
+                          <input class="form-check-input" type="radio" name="hari" id="senin7" />
+                          <label class="form-check-label w-100" for="senin7">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                              onclick="selectButton('senin7')">
+                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
+                              <p>17 Mei</p>
+                            </button>
+                          </label>
+                        </div>
                       </th>
                     </tr>
                   </thead>
                 </table>
               </div>
             </div>
-            <div class="row text-center">
-              <div class="col-md-1 px-3 py-2" style="width: auto">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal">10.00 - 12.00</button>
+            <form action="">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-12 ">
+                      <div class="container">
+                        <div class="row align-items-center text-center">
+                          <div class="col-md-3 mb-3 col-6 ">
+                            <div class="from-check">
+                              <input class="form-check-input" type="radio" name="time" id="time1" />
+                              <label class="form-check-label w-100" for="time1">
+                                <button type="button" class="btn btn-info" style="width: 100%"
+                                  onclick="selectButton('time1')">
+                                  10.00 - 12.00
+                                </button>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3 col-6 ">
+                            <div class="from-check">
+                              <input class="form-check-input" type="radio" name="time" id="time2" />
+                              <label class="form-check-label w-100" for="time2">
+                                <button type="button" class="btn btn-info" style="width: 100%"
+                                  onclick="selectButton('time2')" disabled>
+                                  12.00 - 02.00
+                                </button>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3 col-6 ">
+                            <div class="from-check">
+                              <input class="form-check-input" type="radio" name="time" id="time3" />
+                              <label class="form-check-label w-100" for="time3">
+                                <button type="button" class="btn btn-info" style="width: 100%"
+                                  onclick="selectButton('time3')">
+                                  02.00 - 03.00
+                                </button>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Masukkan Nama</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Masukkan Nomor Telepon</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput1" required>
+                  </div>
+                </div>
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="btn btn-info px-5">Kirim</button>
+                </div>
               </div>
-              <div class="col-md-1 px-3 py-2" style="width: auto">
-                <button type="button" class="btn btn-secondary btn-sm" disabled data-bs-toggle="modal"
-                  data-bs-target="#exampleModal">12.00 - 01.00</button>
-              </div>
-              <div class="col-md-1 px-3 py-2" style="width: auto">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal">01.00 - 02.00</button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
-      <!-- Modal -->
-      <form action="">
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Booking Lapangan</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">Nama</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" required>
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">No Telepon</label>
-                  <input type="number" class="form-control" id="exampleFormControlInput1" required>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Kirim</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
     </div>
   </section>
+
+  @push('script')
+    <script src="{{ asset('js/style.js') }}"></script>
+  @endpush
 @endsection

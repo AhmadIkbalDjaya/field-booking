@@ -29,6 +29,7 @@ Route::get('/admin/field/edit', fn()=> view('admin.field.edit'))->name('admin.fi
 Route::get('/admin/field/show', fn()=> view('admin.field.show'))->name('admin.field.show');
 
 Route::get('/admin/time', fn()=> view('admin.time'))->name('admin.time');
+Route::get('/admin/category', fn()=> view("admin.category.index"))->name('admin.category');
 
 Route::get('/admin/booking', fn()=> view('admin.booking.index'))->name('admin.booking.index');
 Route::get('/admin/booking/show', fn()=> view('admin.booking.show'))->name('admin.booking.show');
