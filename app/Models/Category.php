@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Model
+class Category extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $guarded = ["id"];
 
     public function field()
     {
         return $this->belongsTo(Field::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }

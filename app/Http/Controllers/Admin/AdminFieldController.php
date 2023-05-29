@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Field;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class AdminFieldController extends Controller
@@ -20,12 +21,14 @@ class AdminFieldController extends Controller
     {
         return view("admin.field.create", [
             "title" => "Tambah Lapangan",
+            "categories" => Category::all(),
         ]);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
+            "category_id" => "required|exists:categories,id",
             "name" => "required|string",
             "image" => "required|image|mimes:png,jpg,jpeg",
             "description" => "required|string",
@@ -49,12 +52,14 @@ class AdminFieldController extends Controller
         return view("admin.field.edit", [
             "title" => "Edit Lapangan",
             "field" => $field,
+            "categories" => Category::all(),
         ]);
     }
 
     public function update(Request $request, Field $field)
     {
         $validated = $request->validate([
+            "category_id" => "required|exists:categories,id",
             "name" => "required|string",
             "image" => "nullable|image|mimes:png,jpg,jpeg",
             "description" => "required|string",

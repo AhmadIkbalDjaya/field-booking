@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginRegisController;
 use App\Http\Controllers\User\FieldController;
 use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTimeController;
 use App\Http\Controllers\Admin\AdminFieldController;
 use App\Http\Controllers\Admin\AdminBookingController;
@@ -40,7 +41,7 @@ Route::get('/', function () {
 
 // with controller
 Route::get('field', [FieldController::class, 'index'])->name('field');
-Route::get('/booking/{field}', [BookingController::class, 'index'])->name('booking');
+Route::get('booking/{field}', [BookingController::class, 'index'])->name('booking');
 // Route::get('booking', [BookingController::class, 'index'])->name('booking');
 Route::post('booking', [BookingController::class, 'storeBooking'])->name('booking.store');
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
@@ -50,5 +51,6 @@ Route::delete('profile/{booking}', [ProfileController::class, 'destroyBooking'])
 Route::prefix('admin')->group(function(){
     Route::resource('field', AdminFieldController::class)->names('admin.field');
     Route::resource('time', AdminTimeController::class)->except(["create", "edit", "show"])->names('admin.time');
+    Route::resource('category', AdminCategoryController::class)->except(["create", "edit", "show"])->names('admin.category');
     Route::resource('booking', AdminBookingController::class)->only(["index", "update"])->names('admin.booking');
 });
