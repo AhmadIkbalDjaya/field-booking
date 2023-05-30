@@ -30,7 +30,9 @@ class ProfileController extends Controller
 
     public function destroyBooking(Booking $booking)
     {
-        Storage::delete($booking->confirm_payment);
+        if ($booking->confirmPayment) {
+            Storage::delete($booking->confirm_payment);
+        }
         $booking->delete();
         return back()->with('success', "Booking berhasil dihapus");
     }
