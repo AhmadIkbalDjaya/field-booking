@@ -5,8 +5,8 @@
 @endpush
 
 @section('body')
-  @include('components.nav_responsive')
-  @include('components.navbar')
+  @include('components.nav_responsive2')
+  @include('components.navbar2')
 
   {{-- Spasi --}}
   <section id="spasi">
@@ -122,71 +122,51 @@
                 </table>
               </div>
             </div>
-            <form action="">
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="row">
-                    <div class="col-md-12 ">
-                      <div class="container">
-                        <div class="row align-items-center text-center">
-                          <div class="col-md-3 mb-3 col-6 ">
-                            <div class="from-check">
-                              <input class="form-check-input" type="radio" name="time" id="time1" />
-                              <label class="form-check-label w-100" for="time1">
-                                <button type="button" class="btn btn-info" style="width: 100%"
-                                  onclick="selectButton('time1')">
-                                  10.00 - 12.00
-                                </button>
-                              </label>
-                            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="container">
+                      <div class="row align-items-center text-center">
+                        <div class="col-md-3 mb-3 col-6 ">
+                          <div class="from-check">
+                            <input class="form-check-input" type="radio" name="time" id="time1" />
+                            <label class="form-check-label w-100" for="time1">
+                              <button type="button" class="btn btn-info" style="width: 100%"
+                                onclick="selectButton('time1')">
+                                10.00 - 12.00
+                              </button>
+                            </label>
                           </div>
-                          <div class="col-md-3 mb-3 col-6 ">
-                            <div class="from-check">
-                              <input class="form-check-input" type="radio" name="time" id="time2" />
-                              <label class="form-check-label w-100" for="time2">
-                                <button type="button" class="btn btn-info" style="width: 100%"
-                                  onclick="selectButton('time2')" disabled>
-                                  12.00 - 02.00
-                                </button>
-                              </label>
-                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3 col-6 ">
+                          <div class="from-check">
+                            <input class="form-check-input" type="radio" name="time" id="time2" />
+                            <label class="form-check-label w-100" for="time2">
+                              <button type="button" class="btn btn-info" style="width: 100%"
+                                onclick="selectButton('time2')" disabled>
+                                12.00 - 02.00
+                              </button>
+                            </label>
                           </div>
-                          <div class="col-md-3 mb-3 col-6 ">
-                            <div class="from-check">
-                              <input class="form-check-input" type="radio" name="time" id="time3" />
-                              <label class="form-check-label w-100" for="time3">
-                                <button type="button" class="btn btn-info" style="width: 100%"
-                                  onclick="selectButton('time3')">
-                                  02.00 - 03.00
-                                </button>
-                              </label>
-                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3 col-6 ">
+                          <div class="from-check">
+                            <input class="form-check-input" type="radio" name="time" id="time3" />
+                            <label class="form-check-label w-100" for="time3">
+                              <button type="button" class="btn btn-info" style="width: 100%"
+                                onclick="selectButton('time3')">
+                                02.00 - 03.00
+                              </button>
+                            </label>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 ">
-                  <div class="card-header text-center bg-transparent">
-                    <h4>Forum</h4>
-                  </div>
-                  <div class="card-body">
-                    <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label">Masukkan Nama</label>
-                      <input type="text" class="form-control" id="exampleFormControlInput1" required>
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label">Masukkan Nomor Telepon</label>
-                      <input type="number" class="form-control" id="exampleFormControlInput1" required>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 text-center card-footer bg-transparent">
-                  <button type="submit" class="btn btn-info px-5">Kirim</button>
-                </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

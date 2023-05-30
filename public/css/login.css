@@ -1,5 +1,5 @@
 body {
-    background-image: url(/image/bg2.jpg);
+    background-image: url(../images/lapangan1.jpg);
     height: 100vh;
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.432);
@@ -9,7 +9,7 @@ body {
 
 /* Font */
 h1 {
-    font-size: 90px;
+    font-size: 80px;
     font-weight: 600;
 }
 
@@ -96,6 +96,11 @@ h1 {
 .login-box a:hover {
     background: #fff;
     color: #272727;
+    border-radius: 5px;
+}
+.login-box .regist a:hover {
+    background: transparent;
+    color: #ccf223;
     border-radius: 5px;
 }
 

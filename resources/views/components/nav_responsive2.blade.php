@@ -22,16 +22,32 @@
               <div class="card">
                 <div class="container">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('field') }}">
-                      <i class="bi bi-house-door"></i> Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('admin.field.index') }}">
+                      <i class="bi bi-house-door"></i> Lapangan</a>
                   </li>
                 </div>
               </div>
               <div class="card mt-2">
                 <div class="container">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('profile') }}">
-                      <i class="bi bi-person"></i> Profile</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('admin.booking.index') }}">
+                      <i class="bi bi-calendar"></i> Booking</a>
+                  </li>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="container">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('admin.time') }}">
+                      <i class="bi bi-clock"></i> Waktu</a>
+                  </li>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="container">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('admin.category') }}">
+                      <i class="bi bi-bookmarks"></i> Kategori</a>
                   </li>
                 </div>
               </div>
@@ -46,7 +62,7 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <a href="">
+              <a href="{{ route('login') }}">
                 <button class="dropdown-item" type="button">Logout</button>
               </a>
             </li>
