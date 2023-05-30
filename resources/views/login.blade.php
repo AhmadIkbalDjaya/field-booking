@@ -1,5 +1,7 @@
+@extends('layouts.main')
+
 @push('style')
-  <link rel="stylesheet" href="{{ asset('/css/user/login.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/login.css') }}">
 @endpush
 
 <section id="login">
@@ -8,7 +10,7 @@
       <div class="col-12">
         <div class="row justify-content-center">
           <div class="col-md-9 text-center text-white">
-            <h1>Coffee Shop</h1>
+            <h1>Booking Lapangan</h1>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -32,6 +34,10 @@
                   Submit
                 </a>
               </form>
+              <p class="regist">Belum Punya
+                Akun? <a href="{{ route('register') }}">
+                  Register
+                </a> </p>
             </div>
           </div>
         </div>

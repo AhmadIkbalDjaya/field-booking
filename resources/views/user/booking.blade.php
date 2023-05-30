@@ -20,7 +20,7 @@
   {{-- Booking --}}
   <section id="booking">
     <div class="container">
-      <div class="row card">
+      <div class="row card my-3">
         <div class="col-md-12 text-center card-header">
           <h1>{{ $field->name }}</h1>
           <h5>{{ $field->category->name }}</h5>

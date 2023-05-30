@@ -25,11 +25,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/login', fn()=> view('login'))->name('login');
-// Route::get('/register', fn()=> view('regis'))->name('register');
-// Route::get('/field', fn()=> view('user.field'))->name('field');
-// Route::get('/booking', fn()=> view('user.booking'))->name('booking');
-// Route::get('/profile', fn()=> view('user.profile'))->name('profile');
+Route::get('/login', fn()=> view('login'))->name('login');
+Route::get('/register', fn()=> view('regis'))->name('register');
+Route::get('/field', fn()=> view('user.field'))->name('field');
+Route::get('/booking', fn()=> view('user.booking'))->name('booking');
+Route::get('/profile', fn()=> view('user.profile'))->name('profile');
 
 
 // Route::get('/admin/field', fn()=> view('admin.field.index'))->name('admin.field.index');
@@ -40,17 +40,11 @@ Route::get('/', function () {
 // Route::get('/admin/time', fn()=> view('admin.time'))->name('admin.time');
 // Route::get('/admin/category', fn()=> view("admin.category.index"))->name('admin.category');
 
-// Route::get('/admin/booking', fn()=> view('admin.booking.index'))->name('admin.booking.index');
-// Route::get('/admin/booking/show', fn()=> view('admin.booking.show'))->name('admin.booking.show');
+Route::get('/admin/time', fn()=> view('admin.time'))->name('admin.time');
+Route::get('/admin/category', fn()=> view("admin.category.index"))->name('admin.category');
 
-// with controller
-Route::get('field', [FieldController::class, 'index'])->name('field');
-Route::get('booking/{field}', [BookingController::class, 'index'])->name('booking');
-// Route::get('booking', [BookingController::class, 'index'])->name('booking');
-Route::post('booking', [BookingController::class, 'storeBooking'])->name('booking.store');
-Route::get('profile', [ProfileController::class, 'index'])->name('profile');
-Route::post('profile/confirm/{booking}', [ProfileController::class, 'confirmPayment'])->name('profile.confirm');
-Route::delete('profile/{booking}', [ProfileController::class, 'destroyBooking'])->name('profile.destroy');
+Route::get('/admin/booking', fn()=> view('admin.booking.index'))->name('admin.booking.index');
+Route::get('/admin/booking/show', fn()=> view('admin.booking.show'))->name('admin.booking.show');
 
 Route::prefix('admin')->group(function(){
     Route::resource('field', AdminFieldController::class)->names('admin.field');
