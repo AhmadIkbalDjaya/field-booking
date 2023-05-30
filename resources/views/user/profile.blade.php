@@ -1,3 +1,7 @@
+@php
+  use Carbon\Carbon;
+@endphp
+
 @extends('layouts.main')
 
 @push('style')
@@ -28,49 +32,59 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr>
-                  <th class="col-md-0">No.</th>
+                  <th class="col-md-0">No</th>
                   <th class="col-md-4">Tanggal</th>
                   <th class="col-md-4">Boking Lapangan</th>
                   <th class="col-md-4">Status</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Senin 17 Mei 2023</td>
-                  <td>Futsall</td>
-                  <td>
-                    <button class="badge text-bg-warning" disabled>Padding</button>
-                    <button class="badge text-bg-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
-                        class="bi bi-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Senin 17 Mei 2023</td>
-                  <td>Basket</td>
-                  <td>
-                    <button class="badge text-bg-success" disabled>Succes</button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Senin 17 Mei 2023</td>
-                  <td>Badminton</td>
-                  <td>
-                    <button class="badge text-bg-danger" disabled>Failed</button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Senin 17 Mei 2023</td>
-                  <td>Basket</td>
-                  <td>
-                    <button class="badge text-bg-secondary" disabled>Pay Now</button>
-                    <button class="badge text-bg-danger px-4" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                        class="bi bi-send"></i></button>
-                  </td>
-                </tr>
+                @foreach ($userBooking as $booking)
+                  <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ Carbon::parse($booking->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
+                    <td>{{ $booking->field->name }} ({{ $booking->field->category->name }})</td>
+                    <td>
+                      @if ($booking->status == 'Pending')
+                        <button class="badge text-bg-warning border-0" disabled>Pending</button>
+                        <button class="badge text-bg-danger border-0" data-bs-toggle="modal"
+                          data-bs-target="#modalDelete{{ $booking->id }}">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      @elseif ($booking->status == 'Waiting For Payment')
+                        <button class="badge text-bg-secondary border-0" disabled>Pay Now</button>
+                        <button class="badge text-bg-danger px-3 border-0" data-bs-toggle="modal"
+                          data-bs-target="#exampleModal">
+                          <i class="bi bi-send"></i>
+                        </button>
+                      @elseif ($booking->status == 'Confirmed')
+                        <button class="badge text-bg-success border-0" disabled>Succes</button>
+                      @elseif ($booking->status == 'Cancelled')
+                        <button class="badge text-bg-danger border-0" disabled>Failed</button>
+                      @endif
+                    </td>
+                  </tr>
+                  <!-- Modal Delete -->
+                  <div class="modal fade" id="modalDelete{{ $booking->id }}" tabindex="-1" aria-labelledby="modalDelete{{ $booking->id }}Label"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="modalDelete{{ $booking->id }}Label">Peringatan</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Apakah Anda Yakin Ingin Menghapus?</div>
+                        <div class="modal-footer">
+                          <form action="{{ route('profile.destroy', ['booking' => $booking->id]) }}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -78,7 +92,7 @@
       </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Send Confirm-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -124,20 +138,5 @@
       </div>
     </div>
 
-    <!-- Modal 2 -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">Apakah Anda Yakin Ingin Menghapusnya?</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Hapus</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 @endsection
