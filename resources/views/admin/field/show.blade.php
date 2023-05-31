@@ -52,6 +52,20 @@
                       {{ $field->category->name }}
                     </td>
                   </tr>
+                  <tr>
+                    <td>Harga</td>
+                    <td>:</td>
+                    <td>
+                      50.000
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Deskripsi</td>
+                    <td>:</td>
+                    <td>
+                      amanah
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>

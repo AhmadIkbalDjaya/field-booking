@@ -32,13 +32,13 @@ Route::get('/register', fn()=> view('regis'))->name('register');
 // Route::get('/profile', fn()=> view('user.profile'))->name('profile');
 
 
-// Route::get('/admin/field', fn()=> view('admin.field.index'))->name('admin.field.index');
-// Route::get('/admin/field/create', fn()=> view('admin.field.create'))->name('admin.field.create');
-// Route::get('/admin/field/edit', fn()=> view('admin.field.edit'))->name('admin.field.edit');
-// Route::get('/admin/field/show', fn()=> view('admin.field.show'))->name('admin.field.show');
+Route::get('/admin/field', fn()=> view('admin.field.index'))->name('admin.field.index');
+Route::get('/admin/field/create', fn()=> view('admin.field.create'))->name('admin.field.create');
+Route::get('/admin/field/edit', fn()=> view('admin.field.edit'))->name('admin.field.edit');
+Route::get('/admin/field/show', fn()=> view('admin.field.show'))->name('admin.field.show');
 
-// Route::get('/admin/time', fn()=> view('admin.time'))->name('admin.time');
-// Route::get('/admin/category', fn()=> view("admin.category.index"))->name('admin.category');
+Route::get('/admin/time', fn()=> view('admin.time'))->name('admin.time');
+Route::get('/admin/category', fn()=> view("admin.category.index"))->name('admin.category');
 
 // Route::get('/admin/time', fn()=> view('admin.time'))->name('admin.time');
 // Route::get('/admin/category', fn()=> view("admin.category.index"))->name('admin.category');
@@ -54,9 +54,9 @@ Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('profile/confirm/{booking}', [ProfileController::class, 'confirmPayment'])->name('profile.confirm');
 Route::delete('profile/{booking}', [ProfileController::class, 'destroyBooking'])->name('profile.destroy');
 
-Route::prefix('admin')->group(function(){
-    Route::resource('field', AdminFieldController::class)->names('admin.field');
-    Route::resource('time', AdminTimeController::class)->except(["create", "edit", "show"])->names('admin.time');
-    Route::resource('category', AdminCategoryController::class)->except(["create", "edit", "show"])->names('admin.category');
-    Route::resource('booking', AdminBookingController::class)->only(["index", "update"])->names('admin.booking');
-});
+// Route::prefix('admin')->group(function(){
+//     Route::resource('field', AdminFieldController::class)->names('admin.field');
+//     Route::resource('time', AdminTimeController::class)->except(["create", "edit", "show"])->names('admin.time');
+//     Route::resource('category', AdminCategoryController::class)->except(["create", "edit", "show"])->names('admin.category');
+//     Route::resource('booking', AdminBookingController::class)->only(["index", "update"])->names('admin.booking');
+// });
