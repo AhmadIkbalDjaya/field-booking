@@ -12,13 +12,14 @@ class AdminTimeController extends Controller
     {
         return view('admin.time.index', [
             "title" => "Jam Booking",
+            "times" => Time::orderBy('clock')->get(),
         ]);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "clock" => "required|time",
+            "clock" => "required",
         ]);
         Time::create($validated);
         return back()->with("success", "Jam Berhasil ditambahkan");

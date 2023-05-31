@@ -38,7 +38,7 @@
               <div class="card mt-2">
                 <div class="container">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('admin.time') }}">
+                    <a class="nav-link active" aria-current="page" href="{{ route('admin.time.index') }}">
                       <i class="bi bi-clock"></i> Waktu</a>
                   </li>
                 </div>
@@ -46,7 +46,7 @@
               <div class="card mt-2">
                 <div class="container">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('admin.category') }}">
+                    <a class="nav-link active" aria-current="page" href="{{ route('admin.category.index') }}">
                       <i class="bi bi-bookmarks"></i> Kategori</a>
                   </li>
                 </div>

@@ -45,37 +45,29 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr>
-                  <th class="col-md-0">No.</th>
+                  <th class="col-md-0">No</th>
                   <th class="col-md-4">Kategori</th>
                   <th class="col-md-4">Nama Lapangan</th>
                   <th class="col-md-4">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Futsall</td>
-                  <td>Lapangan A</td>
-                  <td>
-                    <a href="#"><span class="badge text-bg-info" id="liveAlertBtn">Informasi</span></a>
-                    <a href="{{ route('admin.field.edit') }}"><span class="badge text-bg-warning">Edit Produk</span></a>
-                    <a href="#"><span class="badge text-bg-danger" id="liveAlertBtn2">Delete</span></a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Basket</td>
-                  <td>Lapangan B</td>
-                  <td>
-                    <a href="{{ route('admin.field.show') }}"><span class="badge text-bg-info">Informasi</span></a>
-                    <a href="{{ route('admin.field.edit') }}"><span class="badge text-bg-warning">Edit Produk</span></a>
-                    <a href="#"><span class="badge text-bg-danger" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">Delete</span></a>
-                  </td>
-                </tr>
+                @foreach ($fields as $field)
+                  <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $field->category->name }}</td>
+                    <td>{{ $field->name }}</td>
+                    <td>
+                      <a href="{{ route('admin.field.show', ['field' => $field->id]) }}"><span class="badge text-bg-info">Informasi</span></a>
+                      <a href="{{ route('admin.field.edit', ['field' => $field->id]) }}"><span class="badge text-bg-warning">Edit Produk</span></a>
+                      <a href="#"><span class="badge text-bg-danger" data-bs-toggle="modal"
+                          data-bs-target="#exampleModal">Delete</span></a>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
-            <!-- Modal -->
+            <!-- Modal Delete-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog">

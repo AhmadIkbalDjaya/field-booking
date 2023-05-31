@@ -26,7 +26,7 @@
           <p>menambah, mengedit, atau menghapus Kategori</p>
         </div>
         <div class="col-md-4">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Add
             Kategori</button>
         </div>
       </div>
@@ -46,30 +46,75 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr>
-                  <th class="col-md-0">No.</th>
+                  <th class="col-md-0">No</th>
                   <th class="col-md-7">Nama Kategori</th>
                   <th class="col-md-5">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Futsall</td>
-                  <td>
-                    <a href="#"><span class="badge text-bg-danger" id="liveAlertBtn">Edit Kategori</span></a>
-                    <a href="#"><span class="badge text-bg-danger" id="liveAlertBtn2">Delete</span></a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Basket</td>
-                  <td>
-                    <button class="badge text-bg-warning" data-bs-toggle="modal" data-bs-target="#exampleModal3">Edit
-                      Kategori</button>
-                    <a href="#"><span class="badge text-bg-danger" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">Delete</span></a>
-                  </td>
-                </tr>
+                @foreach ($categories as $category)
+                  <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $category->name }}</td>
+                    <td>
+                      <button class="badge text-bg-warning border-0" data-bs-toggle="modal" data-bs-target="#editModal{{ $category->id }}">
+                        EditKategori
+                      </button>
+                      <button class="badge text-bg-danger border-0"
+                        data-bs-toggle="modal"data-bs-target="#deleteModal{{ $category->id }}">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                  <!-- Modal Edit -->
+                  <form action="{{ route('admin.category.update', ['category' => $category->id]) }}" method="POST">
+                    @method('patch')
+                    @csrf
+                    <div class="modal fade" id="editModal{{ $category->id }}" tabindex="-1" aria-labelledby="editModal{{ $category->id }}Label"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModal{{ $category->id }}Label">Edit Kategori</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="mb-3">
+                              <label for="exampleFormControlInput1" class="form-label">Nama Kategori</label>
+                              <input type="text" name="name" class="form-control" id="exampleFormControlInput1" value="{{ $category->name }}" required>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Ubah</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <!-- Modal Delete-->
+                  <div class="modal fade" id="deleteModal{{ $category->id }}" tabindex="-1"
+                    aria-labelledby="deleteModal{{ $category->id }}Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="deleteModal{{ $category->id }}Label">Peringatan</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Apakah anda yakin ingin menghapus {{ $category->name }}?</div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                          <form action="{{ route('admin.category.destroy', ['category' => $category->id]) }}"
+                            method="post">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Ya</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endforeach
               </tbody>
             </table>
 
@@ -77,63 +122,25 @@
         </div>
       </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">Apakah anda yakin ingin menghapusnya?</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-            <button type="button" class="btn btn-primary">Ya</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal 2 -->
-    <form action="">
-      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Create -->
+    <form action="{{ route('admin.category.store') }}" method="POST">
+      @csrf
+      <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
+              <h1 class="modal-title fs-5" id="createModalLabel">Tambah Kategori</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama Kategori</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" required>
+                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" required>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Tambah</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-    <!-- Modal 3 -->
-    <form action="">
-      <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kategori</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nama Kategori</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" required>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Ubah</button>
             </div>
           </div>
         </div>

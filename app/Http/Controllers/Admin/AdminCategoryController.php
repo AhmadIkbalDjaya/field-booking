@@ -12,6 +12,7 @@ class AdminCategoryController extends Controller
     {
         return view("admin.category.index", [
             "title" => "Category Lapangan",
+            "categories" => Category::all(),
         ]);
     }
 
