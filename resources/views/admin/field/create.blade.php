@@ -44,9 +44,17 @@
                   <input type="text" name="" required="" />
                   <label class="text-black">Nama Lapangan</label>
                 </div>
+                <div class="user-box">
+                  <input type="number" name="" required="" min="0"/>
+                  <label class="text-black">Harga</label>
+                </div>
                 <div class="mb-3">
                   <label for="formFile" class="form-label">Masukkan foto Lapangan</label>
                   <input class="form-control" type="file" id="formFile" />
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <div class="row">
                   <div class="col-md-5">
