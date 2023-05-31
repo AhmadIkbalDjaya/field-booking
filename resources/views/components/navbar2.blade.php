@@ -19,10 +19,10 @@
             <a class="nav-link" href="{{ route('admin.booking.index') }}">Booking</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.time') }}">Waktu</a>
+            <a class="nav-link" href="{{ route('admin.time.index') }}">Waktu</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.category') }}">Kategori</a>
+            <a class="nav-link" href="{{ route('admin.category.index') }}">Kategori</a>
           </li>
         </ul>
       </div>

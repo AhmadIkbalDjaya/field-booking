@@ -43,13 +43,13 @@
                   <tr>
                     <td>Nama Lapangan</td>
                     <td>:</td>
-                    <td>Lapanagan A</td>
+                    <td>{{ $field->name }}</td>
                   </tr>
                   <tr>
                     <td>Kategori</td>
                     <td>:</td>
                     <td>
-                      Futsall
+                      {{ $field->category->name }}
                     </td>
                   </tr>
                 </tbody>

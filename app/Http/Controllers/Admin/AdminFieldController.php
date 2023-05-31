@@ -14,6 +14,7 @@ class AdminFieldController extends Controller
     {
         return view("admin.field.index", [
             "title" => "Lapangan",
+            "fields" => Field::all(),
         ]);
     }
 
@@ -27,6 +28,7 @@ class AdminFieldController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
         $validated = $request->validate([
             "category_id" => "required|exists:categories,id",
             "name" => "required|string",
