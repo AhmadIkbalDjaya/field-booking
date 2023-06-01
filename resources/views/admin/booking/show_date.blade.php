@@ -31,92 +31,32 @@
             <div class="row">
               <div class="col-md-12 table-responsive">
                 <table class="table">
+                  @php
+                    use Carbon\Carbon;
+                    $today = Carbon::now()->locale('id_ID');
+                  @endphp
                   <thead>
                     <tr>
-                      <th scope="col">
-                        <div class="from-check">
-                          <input class="form-check-input" type="radio" name="hari" id="senin1" />
-                          <label class="form-check-label w-100" for="senin1">
-                            <button type="button" class="btn btn-info" style="width: 100%"
-                              onclick="selectButton('senin1')">
-                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                              <p>17 Mei</p>
-                            </button>
-                          </label>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="from-check">
-                          <input class="form-check-input" type="radio" name="hari" id="senin2" />
-                          <label class="form-check-label w-100" for="senin2">
-                            <button type="button" class="btn btn-info" style="width: 100%"
-                              onclick="selectButton('senin2')">
-                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                              <p>17 Mei</p>
-                            </button>
-                          </label>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="from-check">
-                          <input class="form-check-input" type="radio" name="hari" id="senin3" />
-                          <label class="form-check-label w-100" for="senin3">
-                            <button type="button" class="btn btn-info" style="width: 100%"
-                              onclick="selectButton('senin3')">
-                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                              <p>17 Mei</p>
-                            </button>
-                          </label>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="from-check">
-                          <input class="form-check-input" type="radio" name="hari" id="senin4" />
-                          <label class="form-check-label w-100" for="senin4">
-                            <button type="button" class="btn btn-info" style="width: 100%"
-                              onclick="selectButton('senin4')">
-                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                              <p>17 Mei</p>
-                            </button>
-                          </label>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="from-check">
-                          <input class="form-check-input" type="radio" name="hari" id="senin5" />
-                          <label class="form-check-label w-100" for="senin5">
-                            <button type="button" class="btn btn-info" style="width: 100%"
-                              onclick="selectButton('senin5')">
-                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                              <p>17 Mei</p>
-                            </button>
-                          </label>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="from-check">
-                          <input class="form-check-input" type="radio" name="hari" id="senin6" />
-                          <label class="form-check-label w-100" for="senin6">
-                            <button type="button" class="btn btn-info" style="width: 100%"
-                              onclick="selectButton('senin6')">
-                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                              <p>17 Mei</p>
-                            </button>
-                          </label>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="from-check">
-                          <input class="form-check-input" type="radio" name="hari" id="senin7" />
-                          <label class="form-check-label w-100" for="senin7">
-                            <button type="button" class="btn btn-info" style="width: 100%"
-                              onclick="selectButton('senin7')">
-                              <p class="fw-bold pt-2 fs-5 h-100">Senin</p>
-                              <p>17 Mei</p>
-                            </button>
-                          </label>
-                        </div>
-                      </th>
+                      @for ($i = 0; $i < 7; $i++)
+                        @php
+                          $date = $i === 0 ? $today : $today->addDay();
+                          $formattedDate = $date->isoFormat('D MMM');
+                          $dayName = $date->isoFormat('dddd');
+                        @endphp
+                        <th scope="col">
+                          <div class="form-check ps-0">
+                            <input class="form-check-input" type="radio" name="date" id="hari{{ $i + 1 }}"
+                              value="{{ Carbon::parse($date)->format('Y-m-d') }}" required />
+                            <label class="form-check-label w-100" for="hari{{ $i + 1 }}">
+                              <button type="button" class="btn btn-info" style="width: 100%"
+                                onclick="selectButton('hari{{ $i + 1 }}')">
+                                <p class="fw-bold mb-0 fs-5 h-100">{{ $dayName }}</p>
+                                <p class="mb-0">{{ $formattedDate }}</p>
+                              </button>
+                            </label>
+                          </div>
+                        </th>
+                      @endfor
                     </tr>
                   </thead>
                 </table>
@@ -128,39 +68,22 @@
                   <div class="col-md-12 ">
                     <div class="container">
                       <div class="row align-items-center text-center">
-                        <div class="col-md-3 mb-3 col-6 ">
-                          <div class="from-check">
-                            <input class="form-check-input" type="radio" name="time" id="time1" />
-                            <label class="form-check-label w-100" for="time1">
-                              <button type="button" class="btn btn-info" style="width: 100%"
-                                onclick="selectButton('time1')">
-                                10.00 - 12.00
-                              </button>
-                            </label>
+                        @foreach ($times as $time)
+                          <div class="col-md-3 mb-3 col-6 ">
+                            <div class="from-check">
+                              <input class="form-check-input" type="radio" name="start_time"
+                                id="time{{ $time->id }}" value="{{ $time->clock }}" />
+                              <label class="form-check-label w-100" for="time{{ $time->id }}">
+                                <button type="button" class="btn btn-info" style="width: 100%"
+                                  onclick="selectButton('time{{ $time->id }}')">
+                                  {{ \Carbon\Carbon::parse($time->clock)->format('H:i') }}
+                                  -
+                                  {{ \Carbon\Carbon::parse($time->clock)->addHour()->format('H:i') }}
+                                </button>
+                              </label>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-md-3 mb-3 col-6 ">
-                          <div class="from-check">
-                            <input class="form-check-input" type="radio" name="time" id="time2" />
-                            <label class="form-check-label w-100" for="time2">
-                              <button type="button" class="btn btn-info" style="width: 100%"
-                                onclick="selectButton('time2')" disabled>
-                                12.00 - 02.00
-                              </button>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-md-3 mb-3 col-6 ">
-                          <div class="from-check">
-                            <input class="form-check-input" type="radio" name="time" id="time3" />
-                            <label class="form-check-label w-100" for="time3">
-                              <button type="button" class="btn btn-info" style="width: 100%"
-                                onclick="selectButton('time3')">
-                                02.00 - 03.00
-                              </button>
-                            </label>
-                          </div>
-                        </div>
+                        @endforeach
                       </div>
                     </div>
                   </div>

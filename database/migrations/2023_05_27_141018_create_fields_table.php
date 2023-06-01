@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('image');
-            $table->decimal('rental_price', 5, 3);
+            $table->decimal('rental_price');
             $table->timestamps();
         });
     }

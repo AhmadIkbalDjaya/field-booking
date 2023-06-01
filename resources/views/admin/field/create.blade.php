@@ -49,8 +49,8 @@
                   <label class="text-black">Nama Lapangan</label>
                 </div>
                 <div class="user-box">
-                  <input type="number" name="" required="" min="0"/>
-                  <label class="text-black">Harga</label>
+                  <input type="number" name="rental_price" required="" min="0" />
+                  <label class="text-black">Harga Sewa / Jam</label>
                 </div>
                 <div class="mb-3">
                   <label for="formFile" class="form-label">Masukkan foto Lapangan</label>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <div class="row">
                   <div class="col-md-5">
@@ -67,7 +67,7 @@
                       <select class="form-select" name="category_id" aria-label="Default select example">
                         <option hidden>Kategori Lapangan</option>
                         @foreach ($categories as $category)
-                          <option value="{{ $category->id }}">{{ $category->name }}</option>  
+                          <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                       </select>
                     </div>

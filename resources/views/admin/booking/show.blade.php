@@ -42,38 +42,101 @@
                   <tr>
                     <td>Nama Lapangan</td>
                     <td>:</td>
-                    <td>Lapanagan A</td>
+                    <td>{{ $booking->field->name }}</td>
                   </tr>
                   <tr>
                     <td>Kategori</td>
                     <td>:</td>
-                    <td>Futsall</td>
+                    <td>{{ $booking->field->category->name }}</td>
                   </tr>
                   <tr>
                     <td>Tanggal</td>
                     <td>:</td>
-                    <td>30/05/2023</td>
+                    <td>{{ $booking->date }}</td>
                   </tr>
                   <tr>
                   <tr>
                     <td>Nama Pemesan</td>
                     <td>:</td>
-                    <td>Andi</td>
+                    <td>{{ $booking->costumer_name }}</td>
                   </tr>
                   <tr>
                     <td>Waktu</td>
                     <td>:</td>
-                    <td>20.00 - 01.00</td>
+                    <td>
+                      {{ $booking->start_time }}
+                      -
+                      {{ $booking->end_time }}
+                    </td>
                   </tr>
                   <tr>
                     <td>Nomor Telepon</td>
                     <td>:</td>
-                    <td>085xxxx</td>
+                    <td>{{ $booking->phone }}</td>
                   </tr>
                   <tr>
                     <td>Status</td>
                     <td>:</td>
-                    <td><span class="badge text-bg-warning">panding</span></td>
+                    <td>
+                      <button
+                        class="btn
+                        @if ($booking->status == 'Pending') btn-warning
+                        @elseif ($booking->status == 'Waiting For Payment')
+                          btn-secondary
+                        @elseif ($booking->status == 'Confirmed')
+                          btn-success
+                        @elseif ($booking->status == 'Cancelled')
+                          btn-danger @endif
+                      btn-sm dropdown-toggle py-0 px-2"
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @if ($booking->status == 'Pending')
+                          Pending
+                        @elseif ($booking->status == 'Waiting For Payment')
+                          Tunggu Pembayaran
+                        @elseif ($booking->status == 'Confirmed')
+                          Confirmed
+                        @elseif ($booking->status == 'Cancelled')
+                          Cancelled
+                        @endif
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <form action="{{ route('admin.booking.update', ['booking' => $booking->id]) }}" method="post">
+                            @method('patch')
+                            @csrf
+                            <input type="hidden" name="status" value="Waiting For Payment">
+                            <button type="submit" class="dropdown-item">Tunggu Pembayaran</button>
+                          </form>
+                        </li>
+                        <li>
+                          <form action="{{ route('admin.booking.update', ['booking' => $booking->id]) }}" method="post">
+                            @method('patch')
+                            @csrf
+                            <input type="hidden" name="status" value="Confirmed">
+                            <button type="submit" class="dropdown-item">Terima</button>
+                          </form>
+                        </li>
+                        <li>
+                          <form action="{{ route('admin.booking.update', ['booking' => $booking->id]) }}" method="post">
+                            @method('patch')
+                            @csrf
+                            <input type="hidden" name="status" value="Cancelled">
+                            <button type="submit" class="dropdown-item">Tolak</button>
+                          </form>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Bukti Pembayaran</td>
+                    <td>:</td>
+                    <td>
+                      @if ($booking->confirm_payment)
+                        <img src="{{ asset('storage/'. $booking->confirm_payment) }}" alt="">                        
+                      @else
+                        Belum Melakukan Pembayaran
+                      @endif
+                    </td>
                   </tr>
                 </tbody>
               </table>

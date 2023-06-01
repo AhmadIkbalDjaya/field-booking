@@ -28,11 +28,10 @@ class AdminFieldController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $validated = $request->validate([
             "category_id" => "required|exists:categories,id",
             "name" => "required|string",
-            "image" => "required|image|mimes:png,jpg,jpeg",
+            "image" => "required|image",
             "description" => "required|string",
             "rental_price" => "required|numeric|min:0",
         ]);
@@ -63,11 +62,10 @@ class AdminFieldController extends Controller
         $validated = $request->validate([
             "category_id" => "required|exists:categories,id",
             "name" => "required|string",
-            "image" => "nullable|image|mimes:png,jpg,jpeg",
+            "image" => "nullable|image",
             "description" => "required|string",
             "rental_price" => "required|numeric|min:0",
         ]);
-
         if($request->file("image")){
             Storage::delete($field->image);
             $validated["image"] = $request->file('image')->store('field');
@@ -82,6 +80,4 @@ class AdminFieldController extends Controller
         $field->delete();
         return back()->with("success", "Lapangan Berhasil Dihapus");
     }
-
-
 }

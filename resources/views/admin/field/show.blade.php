@@ -22,7 +22,7 @@
     <div class="container">
       <div class="row shadow py-3 text-center">
         <div class="col-md-3">
-          <div><img src="{{ asset('/images/lapangan1.jpg') }}" alt="img" class="rounded-2" height=" 150px" /></div>
+          <div><img src="{{ asset('storage/'.$field->image) }}" alt="img" class="rounded-2" height=" 150px" /></div>
         </div>
         <div class="col-md-6 text-center align-self-center">
           <h3>Informasi Lapangan</h3>
@@ -56,14 +56,14 @@
                     <td>Harga</td>
                     <td>:</td>
                     <td>
-                      50.000
+                      {{ $field->rental_price }}
                     </td>
                   </tr>
                   <tr>
                     <td>Deskripsi</td>
                     <td>:</td>
                     <td>
-                      amanah
+                      {{ $field->description }}
                     </td>
                   </tr>
                 </tbody>
