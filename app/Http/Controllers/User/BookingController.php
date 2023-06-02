@@ -11,12 +11,17 @@ use App\Models\Field;
 
 class BookingController extends Controller
 {
-    public function index(Field $field)
+    public function index(Field $field, Request $request)
     {
+        $bookings = $request->select_date ?
+            Booking::where("field_id", $field->id)->where('date', $request->select_date)->get() :
+            Booking::where("field_id", $field->id)->get();
         return view('user.booking', [
             "title" => "Pilih Jadwal Lapangan",
             "times" => Time::all(),
             "field" => $field,
+            "bookings" => $bookings,
+            "select_date" => $request->select_date,
         ]);
     }
 

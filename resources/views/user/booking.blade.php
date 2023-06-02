@@ -7,7 +7,10 @@
 @section('body')
   @include('components.nav_responsive')
   @include('components.navbar')
-
+  @php
+    use Carbon\Carbon;
+    $today = Carbon::now()->locale('id_ID');
+  @endphp
   {{-- Spasi --}}
   <section id="spasi">
     <div class="container-fluid">
@@ -35,10 +38,6 @@
                 <input type="hidden" name="field_id" value="{{ $field->id }}">
                 <div class="col-md-12 table-responsive">
                   <table class="table">
-                    @php
-                      use Carbon\Carbon;
-                      $today = Carbon::now()->locale('id_ID');
-                    @endphp
                     <thead>
                       <tr>
                         @for ($i = 0; $i < 7; $i++)
@@ -49,14 +48,17 @@
                           @endphp
                           <th scope="col">
                             <div class="form-check ps-0">
-                              <input class="form-check-input" type="radio" name="date"
-                                id="hari{{ $i + 1 }}" value="{{ Carbon::parse($date)->format('Y-m-d') }}" required/>
+                              <input class="form-check-input" type="radio" name="date" id="hari{{ $i + 1 }}"
+                                value="{{ Carbon::parse($date)->format('Y-m-d') }}" required
+                                @if ($select_date == $date->format('Y-m-d')) checked @endif />
                               <label class="form-check-label w-100" for="hari{{ $i + 1 }}">
-                                <button type="button" class="btn btn-info" style="width: 100%"
-                                  onclick="selectButton('hari{{ $i + 1 }}')">
-                                  <p class="fw-bold mb-0 fs-5 h-100">{{ $dayName }}</p>
-                                  <p class="mb-0">{{ $formattedDate }}</p>
-                                </button>
+                                <a href="{{ route('booking', ['field' => $field->id, 'select_date' => $date->format('Y-m-d')]) }}">
+                                  <button type="button" class="btn btn-info" style="width: 100%"
+                                    onclick="selectButton('hari{{ $i + 1 }}')">
+                                    <p class="fw-bold mb-0 fs-5 h-100">{{ $dayName }}</p>
+                                    <p class="mb-0">{{ $formattedDate }}</p>
+                                  </button>
+                                </a>
                               </label>
                             </div>
                           </th>
@@ -78,7 +80,18 @@
                               <input class="form-check-input" type="radio" name="start_time"
                                 id="time{{ $time->id }}" value="{{ $time->clock }}" />
                               <label class="form-check-label w-100" for="time{{ $time->id }}">
-                                <button type="button" class="btn btn-info" style="width: 100%"
+                                <button type="button" style="width: 100%" class="btn btn-info
+                                @foreach ($bookings as $booking) 
+                                  @if ($time->clock == $booking->start_time && $booking->status == "Confirmed")
+                                    bg-dark
+                                  @endif
+                                @endforeach 
+                                "
+                                @foreach ($bookings as $booking) 
+                                  @if ($time->clock == $booking->start_time && $booking->status == "Confirmed")
+                                    @disabled(true)
+                                  @endif
+                                @endforeach 
                                   onclick="selectButton('time{{ $time->id }}')">
                                   {{ \Carbon\Carbon::parse($time->clock)->format('H:i') }}
                                   -

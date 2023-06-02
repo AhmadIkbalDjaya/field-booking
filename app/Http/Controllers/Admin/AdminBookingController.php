@@ -54,13 +54,17 @@ class AdminBookingController extends Controller
         ]);
     }
 
-    public function show_date(Field $field)
+    public function show_date(Field $field, Request $request)
     {
-        $bookings = Booking::where("field_id", $field->id)->get();
+        $bookings = $request->select_date ? 
+        Booking::where("field_id", $field->id)->where('date', $request->select_date)->get() :
+        Booking::where("field_id", $field->id)->get();
         return view("admin.booking.show_date", [
             "title" => "Jadwal Lapangan",
             "bookings" => $bookings,
             "times" => Time::all(),
+            "select_date" => $request->select_date,
+            "field" => $field,
         ]);
     }
 }

@@ -132,7 +132,7 @@
                     <td>:</td>
                     <td>
                       @if ($booking->confirm_payment)
-                        <img src="{{ asset('storage/'. $booking->confirm_payment) }}" alt="">                        
+                        <img src="{{ asset('storage/'. $booking->confirm_payment) }}" alt="" class="img-fluid">                        
                       @else
                         Belum Melakukan Pembayaran
                       @endif

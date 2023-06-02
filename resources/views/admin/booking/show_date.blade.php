@@ -46,13 +46,18 @@
                         <th scope="col">
                           <div class="form-check ps-0">
                             <input class="form-check-input" type="radio" name="date" id="hari{{ $i + 1 }}"
-                              value="{{ Carbon::parse($date)->format('Y-m-d') }}" required />
+                              value="{{ Carbon::parse($date)->format('Y-m-d') }}" required
+                              @if ($select_date == $date->format('Y-m-d')) checked @endif />
                             <label class="form-check-label w-100" for="hari{{ $i + 1 }}">
-                              <button type="button" class="btn btn-info" style="width: 100%"
-                                onclick="selectButton('hari{{ $i + 1 }}')">
-                                <p class="fw-bold mb-0 fs-5 h-100">{{ $dayName }}</p>
-                                <p class="mb-0">{{ $formattedDate }}</p>
-                              </button>
+                              <form action="{{ route('admin.booking.show_date', ['field' => $field->id]) }}"
+                                method="get">
+                                <input type="hidden" name="select_date" value="{{ $date->format('Y-m-d') }}">
+                                <button type="submit" class="btn btn-info" style="width: 100%"
+                                  onclick="selectButton('hari{{ $i + 1 }}')">
+                                  <p class="fw-bold mb-0 fs-5 h-100">{{ $dayName }}</p>
+                                  <p class="mb-0">{{ $formattedDate }}</p>
+                                </button>
+                              </form>
                             </label>
                           </div>
                         </th>
@@ -71,11 +76,14 @@
                         @foreach ($times as $time)
                           <div class="col-md-3 mb-3 col-6 ">
                             <div class="from-check">
-                              <input class="form-check-input" type="radio" name="start_time"
-                                id="time{{ $time->id }}" value="{{ $time->clock }}" />
                               <label class="form-check-label w-100" for="time{{ $time->id }}">
-                                <button type="button" class="btn btn-info" style="width: 100%"
-                                  onclick="selectButton('time{{ $time->id }}')">
+                                <button type="button" style="width: 100%" class="btn btn-info
+                                @foreach ($bookings as $booking) 
+                                  @if ($time->clock == $booking->start_time && $booking->status == "Confirmed")
+                                    bg-dark
+                                  @endif
+                                @endforeach 
+                                ">
                                   {{ \Carbon\Carbon::parse($time->clock)->format('H:i') }}
                                   -
                                   {{ \Carbon\Carbon::parse($time->clock)->addHour()->format('H:i') }}
