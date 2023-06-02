@@ -33,10 +33,7 @@
     </div>
   </section>
 
-  <!-- alerts -->
-  <div id="liveAlertPlaceholder"></div>
-
-  <!-- End Alerts -->
+  @include('components.alerts')
 
   <section class="kategori">
     <div class="container-fluid card shadow my-3">

@@ -26,17 +26,16 @@
           <p>menambah, mengedit, atau menghapus Lapangan</p>
         </div>
         <div class="col-md-4">
-          <a href="{{ route('admin.field.create') }}"><button type="button" class="btn btn-primary">Add
-              Lapangan</button></a>
+          <a href="{{ route('admin.field.create') }}">
+            <button type="button" class="btn btn-primary">Add
+              Lapangan</button>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- alerts -->
-  <div id="liveAlertPlaceholder"></div>
-
-  <!-- End Alerts -->
+  @include('components.alerts')
 
   <section class="Lapangan">
     <div class="container-fluid card shadow my-3">

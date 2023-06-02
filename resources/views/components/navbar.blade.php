@@ -27,7 +27,7 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
           <li>
-            <a href="{{ route('login') }}">
+            <a href="{{ route('logout') }}">
               <button class="dropdown-item" type="button">Logout</button>
             </a>
           </li>

@@ -20,33 +20,33 @@ class LoginRegisController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:8',
         ]);
-    
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            $request->session()->regenerate();
             if ($user->level == 1) {
-                // Jika user adalah admin, redirect ke panel admin
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.field.index');
             } else {
-                // Jika user adalah user biasa, redirect ke halaman home
                 return redirect()->route('home');
             }
         } else {
-            // Jika login gagal, redirect kembali ke halaman login dengan pesan error
-            return redirect()->route('login')->with('error', 'Email atau password salah.');
+            return redirect()->route('login')->with('loginError', 'Email atau password salah.');
         }
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('login');
     }
 
     public function regisView()
     {
-        return view("regis", [
+        return view("register", [
             "title" => "Registrasi",
         ]);
     }
@@ -56,7 +56,7 @@ class LoginRegisController extends Controller
         $validated = $request->validate([
             'username' => 'required|string|unique:users',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
         $validated['password'] = Hash::make($validated['password']);
 

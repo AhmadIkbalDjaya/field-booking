@@ -78,7 +78,7 @@ h1 {
     font-size: 12px;
 }
 
-.login-box form a {
+.login-box form button {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
@@ -91,25 +91,27 @@ h1 {
     transition: 0.5s;
     margin-top: 40px;
     letter-spacing: 3px;
+    border: none;
+    background: transparent;
 }
 
-.login-box a:hover {
+.login-box button:hover {
     background: #fff;
     color: #272727;
     border-radius: 5px;
 }
-.login-box .regist a:hover {
+.login-box .regist button:hover {
     background: transparent;
     color: #ccf223;
     border-radius: 5px;
 }
 
-.login-box a span {
+.login-box button span {
     position: absolute;
     display: block;
 }
 
-.login-box a span:nth-child(1) {
+.login-box button span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
@@ -129,7 +131,7 @@ h1 {
     }
 }
 
-.login-box a span:nth-child(2) {
+.login-box button span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
@@ -150,7 +152,7 @@ h1 {
     }
 }
 
-.login-box a span:nth-child(3) {
+.login-box button span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
@@ -171,7 +173,7 @@ h1 {
     }
 }
 
-.login-box a span:nth-child(4) {
+.login-box button span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;
@@ -197,12 +199,12 @@ h1 {
     font-size: 14px;
 }
 
-.login-box a.a2 {
+.login-box button.a2 {
     color: #fff;
     text-decoration: none;
 }
 
-.login-box a.a2:hover {
+.login-box button.a2:hover {
     background: transparent;
     color: #aaa;
     border-radius: 5px;

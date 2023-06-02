@@ -29,7 +29,7 @@
           <h5>{{ $field->category->name }}</h5>
         </div>
         <div class="col-md-12 card-body">
-          <img class="rounded-3" src="{{ asset('/images/lapangan1.jpg') }}" alt="img" width="100%"
+          <img class="rounded-3" src="{{ asset('storage/' . $field->image) }}" alt="img" width="100%"
             height="200px" />
           <div class="container-fluid">
             <div class="row">
@@ -52,7 +52,8 @@
                                 value="{{ Carbon::parse($date)->format('Y-m-d') }}" required
                                 @if ($select_date == $date->format('Y-m-d')) checked @endif />
                               <label class="form-check-label w-100" for="hari{{ $i + 1 }}">
-                                <a href="{{ route('booking', ['field' => $field->id, 'select_date' => $date->format('Y-m-d')]) }}">
+                                <a
+                                  href="{{ route('booking', ['field' => $field->id, 'select_date' => $date->format('Y-m-d')]) }}">
                                   <button type="button" class="btn btn-info" style="width: 100%"
                                     onclick="selectButton('hari{{ $i + 1 }}')">
                                     <p class="fw-bold mb-0 fs-5 h-100">{{ $dayName }}</p>
@@ -80,18 +81,17 @@
                               <input class="form-check-input" type="radio" name="start_time"
                                 id="time{{ $time->id }}" value="{{ $time->clock }}" />
                               <label class="form-check-label w-100" for="time{{ $time->id }}">
-                                <button type="button" style="width: 100%" class="btn btn-info
+                                <button type="button" style="width: 100%"
+                                  class="btn btn-info
                                 @foreach ($bookings as $booking) 
-                                  @if ($time->clock == $booking->start_time && $booking->status == "Confirmed")
+                                  @if ($time->clock == $booking->start_time && $booking->status == 'Confirmed')
                                     bg-dark
-                                  @endif
-                                @endforeach 
+                                  @endif @endforeach 
                                 "
-                                @foreach ($bookings as $booking) 
-                                  @if ($time->clock == $booking->start_time && $booking->status == "Confirmed")
+                                  @foreach ($bookings as $booking) 
+                                  @if ($time->clock == $booking->start_time && $booking->status == 'Confirmed')
                                     @disabled(true)
-                                  @endif
-                                @endforeach 
+                                  @endif @endforeach
                                   onclick="selectButton('time{{ $time->id }}')">
                                   {{ \Carbon\Carbon::parse($time->clock)->format('H:i') }}
                                   -
@@ -109,11 +109,24 @@
               <div class="col-md-4">
                 <div class="mb-3">
                   <label for="exampleFormControlInput1" class="form-label">Masukkan Nama</label>
-                  <input type="text" name="costumer_name" class="form-control" id="exampleFormControlInput1" required>
+                  <input type="text" name="costumer_name" value="{{ old('costumer_name') }}"
+                    class="form-control @error('costumer_name') is-invalid @enderror" id="exampleFormControlInput1"
+                    required>
+                  @error('costumer_name')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
                 <div class="mb-3">
                   <label for="exampleFormControlInput1" class="form-label">Masukkan Nomor Telepon</label>
-                  <input type="number" name="phone" class="form-control" id="exampleFormControlInput1" required>
+                  <input type="number" name="phone" value="{{ old('phone') }}"
+                    class="form-control @error('phone') is-invalid @enderror" id="exampleFormControlInput1" required>
+                  @error('phone')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
               </div>
               <div class="col-md-12 text-center">

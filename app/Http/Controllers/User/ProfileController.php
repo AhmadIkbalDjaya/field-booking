@@ -11,7 +11,8 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $userBooking = Booking::where('user_id', '1')->latest()->get();
+        $user_id = Auth()->user()->id;
+        $userBooking = Booking::where('user_id', $user_id)->latest()->get();
         return view('user.profile', [
             "title" => "Profile",
             "userBooking" => $userBooking,

@@ -28,6 +28,7 @@
           <h1>Informasi</h1>
         </div>
         <div class="col-md-12 card-body">
+          @include('components.alerts')
           <div class="table-responsive">
             <table class="table table-bordered text-center">
               <thead>

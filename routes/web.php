@@ -21,12 +21,9 @@ use App\Http\Controllers\Admin\AdminBookingController;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('field');
-});
 
-Route::get('/login', fn () => view('login'))->name('login');
-Route::get('/register', fn () => view('regis'))->name('register');
+// Route::get('/login', fn () => view('login'))->name('login');
+// Route::get('/register', fn () => view('regis'))->name('register');
 // Route::get('/field', fn()=> view('user.field'))->name('field');
 // Route::get('/booking', fn()=> view('user.booking'))->name('booking');
 // Route::get('/profile', fn()=> view('user.profile'))->name('profile');
@@ -48,21 +45,32 @@ Route::get('/register', fn () => view('regis'))->name('register');
 
 // Route::get('/admin/booking/field', fn()=> view('admin.booking.show_field'))->name('admin.booking.show_field');
 // Route::get('/admin/booking/field/date', fn()=> view('admin.booking.show_date'))->name('admin.booking.show_date');
+Route::get('/', fn () => redirect()->route('field'))->name('home')->middleware(['auth', 'user']);
 
-Route::get('/admin/booking/field', [AdminBookingController::class, "show_field"])->name('admin.booking.show_field');
-Route::get('/admin/booking/{field}/date', [AdminBookingController::class, "show_date"])->name('admin.booking.show_date');
+Route::controller(LoginRegisController::class)->group(function () {
+    Route::get('login', 'loginView')->name('login')->middleware('guest');
+    Route::post('login', 'loginProcess')->name('loginProcess')->middleware('guest');
+    Route::get('logout', 'logout')->name('logout')->middleware('auth');
+    Route::get('regis', 'regisView')->name('regis')->middleware('guest');
+    Route::post('regis', 'regisProcess')->name('regisProcess')->middleware('guest');
+});
 
-// with controller
-Route::get('field', [FieldController::class, 'index'])->name('field');
-Route::get('booking/{field}', [BookingController::class, 'index'])->name('booking');
-Route::post('booking', [BookingController::class, 'storeBooking'])->name('booking.store');
-Route::get('profile', [ProfileController::class, 'index'])->name('profile');
-Route::patch('profile/confirm/{booking}', [ProfileController::class, 'confirmPayment'])->name('profile.confirm');
-Route::delete('profile/{booking}', [ProfileController::class, 'destroyBooking'])->name('profile.destroy');
+Route::middleware(['auth', 'user'])->group(function () {
+    Route::get('field', [FieldController::class, 'index'])->name('field');
+    Route::get('booking/{field}', [BookingController::class, 'index'])->name('booking');
+    Route::post('booking', [BookingController::class, 'storeBooking'])->name('booking.store');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::patch('profile/confirm/{booking}', [ProfileController::class, 'confirmPayment'])->name('profile.confirm');
+    Route::delete('profile/{booking}', [ProfileController::class, 'destroyBooking'])->name('profile.destroy');
+});
 
-Route::prefix('admin')->group(function () {
-    Route::resource('field', AdminFieldController::class)->names('admin.field');
-    Route::resource('time', AdminTimeController::class)->except(["create", "edit", "show"])->names('admin.time');
-    Route::resource('category', AdminCategoryController::class)->except(["create", "edit", "show"])->names('admin.category');
-    Route::resource('booking', AdminBookingController::class)->only(["index", "show", "update", "destroy"])->names('admin.booking');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::resource('field', AdminFieldController::class)->names('admin.field');
+        Route::resource('time', AdminTimeController::class)->except(["create", "edit", "show"])->names('admin.time');
+        Route::resource('category', AdminCategoryController::class)->except(["create", "edit", "show"])->names('admin.category');
+        Route::resource('booking', AdminBookingController::class)->only(["index", "show", "update", "destroy"])->names('admin.booking');
+        Route::get('booking/field', [AdminBookingController::class, "show_field"])->name('admin.booking.show_field');
+        Route::get('booking/{field}/date', [AdminBookingController::class, "show_date"])->name('admin.booking.show_date');
+    });
 });

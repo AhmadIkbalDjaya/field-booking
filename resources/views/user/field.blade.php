@@ -39,7 +39,7 @@
                 {{-- <a href="{{ route('booking', ['field' => $field->id]) }}"> --}}
                   <div class="card">
                     <div class="px-2 pt-2">
-                      <img src="{{ asset('/images/lapangan1.jpg') }}" class="card-img-top rounded-3" alt="img"
+                      <img src="{{ asset('storage/'.$field->image) }}" class="card-img-top rounded-3" alt="img"
                         height="170px" />
                     </div>
                     <div class="card-body">
